@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import br.com.neki.model.UsuarioSecurity;
+import br.com.neki.model.UserSecurity;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
@@ -25,7 +25,7 @@ public class JwtUtils {
 
 	public String generateJwtToken(Authentication authentication) {
 
-		UsuarioSecurity userPrincipal = (UsuarioSecurity) authentication.getPrincipal();
+		UserSecurity userPrincipal = (UserSecurity) authentication.getPrincipal();
 
 		return Jwts.builder()
 				.setSubject((userPrincipal.getUsername()))

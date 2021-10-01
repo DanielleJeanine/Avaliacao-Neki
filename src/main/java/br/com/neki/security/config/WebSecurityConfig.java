@@ -18,7 +18,7 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import br.com.neki.security.jtw.AuthTokenFilter;
-import br.com.neki.service.UsuarioSecurityService;
+import br.com.neki.service.UserSecurityService;
 
 
 @Configuration
@@ -32,7 +32,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			"/swagger-ui/**", "/webjars/**" };
 
 	@Autowired
-	UsuarioSecurityService userDetailsService;
+	UserSecurityService userDetailsService;
 
 	@Override
 	public void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception {

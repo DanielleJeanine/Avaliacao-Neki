@@ -12,107 +12,99 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "skill")
+@Table(name = "skill", schema = "teste_residencia")
 public class Skill {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "skill_seq")
 	@Column(name = "id")
-	private Long idSkill;
+	private Long id;
 
 	@Column(name = "name")
-	private String nome;
+	private String name;
 
 	@Column(name = "version")
-	private String versao;
+	private String version;
 
 	@Column(name = "description")
-	private String descricao;
+	private String description;
 
 	@Column(name = "image_url")
-	private String imagem;
+	private String image_url;
 
-	@OneToMany
-	private List<UsuarioSkill> usuarioSkill;
+	@OneToMany(mappedBy = "skill_id")
+	private List<UserSkill> userSkill;
 
-	public Skill() {
-		// TODO Auto-generated constructor stub
-	}
+public Skill() {
+	// TODO Auto-generated constructor stub
+}
 
-	public Skill(Long idSkill, String nome, String versao, String descricao, String imagem,
-			List<UsuarioSkill> usuarioSkill) {
-		super();
-		this.idSkill = idSkill;
-		this.nome = nome;
-		this.versao = versao;
-		this.descricao = descricao;
-		this.imagem = imagem;
-		this.usuarioSkill = usuarioSkill;
-	}
 
-	public Long getIdSkill() {
-		return idSkill;
-	}
+public Long getId() {
+	return id;
+}
 
-	public void setIdSkill(Long idSkill) {
-		this.idSkill = idSkill;
-	}
+public void setId(Long id) {
+	this.id = id;
+}
 
-	public String getNome() {
-		return nome;
-	}
+public String getName() {
+	return name;
+}
 
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
+public void setName(String name) {
+	this.name = name;
+}
 
-	public String getVersao() {
-		return versao;
-	}
+public String getVersion() {
+	return version;
+}
 
-	public void setVersao(String versao) {
-		this.versao = versao;
-	}
+public void setVersion(String version) {
+	this.version = version;
+}
 
-	public String getDescricao() {
-		return descricao;
-	}
+public String getDescription() {
+	return description;
+}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
+public void setDescription(String description) {
+	this.description = description;
+}
 
-	public String getImagem() {
-		return imagem;
-	}
+public String getImage_url() {
+	return image_url;
+}
 
-	public void setImagem(String imagem) {
-		this.imagem = imagem;
-	}
+public void setImage_url(String image_url) {
+	this.image_url = image_url;
+}
 
-	public List<UsuarioSkill> getUsuarioSkill() {
-		return usuarioSkill;
-	}
+public List<UserSkill> getUserSkill() {
+	return userSkill;
+}
 
-	public void setUsuarioSkill(List<UsuarioSkill> usuarioSkill) {
-		this.usuarioSkill = usuarioSkill;
-	}
+public void setUsuarioSkill(List<UserSkill> userSkill) {
+	this.userSkill = userSkill;
+}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(idSkill);
-	}
+@Override
+public int hashCode() {
+	return Objects.hash(id);
+}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Skill other = (Skill) obj;
-		return Objects.equals(idSkill, other.idSkill);
-	}
+@Override
+public boolean equals(Object obj) {
+	if (this == obj)
+		return true;
+	if (obj == null)
+		return false;
+	if (getClass() != obj.getClass())
+		return false;
+	Skill other = (Skill) obj;
+	return Objects.equals(id, other.id);
+}
 
+
+	
 }
