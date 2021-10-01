@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import br.com.neki.service.UsuarioSecurityService;
+import br.com.neki.service.UserSecurityService;
 
 
 
@@ -23,7 +23,7 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 	private JwtUtils jwtUtils;
 
 	@Autowired
-	private UsuarioSecurityService usuarioSecurity;
+	private UserSecurityService usuarioSecurity;
 
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)

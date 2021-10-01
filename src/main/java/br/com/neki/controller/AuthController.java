@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.neki.security.jtw.JwtUtils;
-import br.com.neki.service.UsuarioService;
+import br.com.neki.service.UserService;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -28,7 +28,7 @@ public class AuthController {
 	AuthenticationManager authenticationManager;
 	
 	@Autowired
-	UsuarioService userService;
+	UserService userService;
 	
 	@Autowired
 	JwtUtils jwtUtils;

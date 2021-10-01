@@ -11,22 +11,22 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import br.com.neki.model.Usuario;
-import br.com.neki.model.UsuarioSecurity;
-import br.com.neki.repository.UsuarioRepository;
+import br.com.neki.model.User;
+import br.com.neki.model.UserSecurity;
+import br.com.neki.repository.UserRepository;
 
 @Service
-public class UsuarioSecurityService implements UserDetailsService {
+public class UserSecurityService implements UserDetailsService {
 
 	@Autowired
-	private UsuarioRepository usuarioRepository;
+	private UserRepository usuarioRepository;
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-		Usuario usuario;
+		User usuario;
 		try {
-			Optional<Usuario> opUsuario = usuarioRepository.findByLogin(username);
+			Optional<User> opUsuario = usuarioRepository.findByLogin(username);
 			if (!opUsuario.isPresent())
 				throw new UsernameNotFoundException("Usuário não encontrado");
 			else {
@@ -35,15 +35,15 @@ public class UsuarioSecurityService implements UserDetailsService {
 		} catch (Exception e) {
 			throw new UsernameNotFoundException("database error");
 		}
-		UsuarioSecurity springUser = buildUserFromUserEntity(usuario);
+		UserSecurity springUser = buildUserFromUserEntity(usuario);
 		return springUser;
 
 	}
 
 	@SuppressWarnings("unchecked")
-	private UsuarioSecurity buildUserFromUserEntity(Usuario userEntity) {
+	private UserSecurity buildUserFromUserEntity(User userEntity) {
 		String username = userEntity.getLogin().toString();
-		String password = userEntity.getSenha();
+		String password = userEntity.getPassword();
 
 		boolean accountNonExpired = true;
 		boolean credentialsNonExpired = true;
@@ -56,7 +56,7 @@ public class UsuarioSecurityService implements UserDetailsService {
 		Collection<? extends GrantedAuthority> authorities = (Collection<? extends GrantedAuthority>) AuthorityUtils
 				.createAuthorityList(userRoles);
 
-		UsuarioSecurity springUser = new UsuarioSecurity(username, password, enable, accountNonExpired,
+		UserSecurity springUser = new UserSecurity(username, password, enable, accountNonExpired,
 				credentialsNonExpired, accountNonLocked, authorities);
 
 		return springUser;
